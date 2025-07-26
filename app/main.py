@@ -1,11 +1,15 @@
 # app/main.py
+import sys
+from pathlib import Path
+
+# ✅ Agrega raíz del proyecto al sys.path ANTES de los imports
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from core.navegador.launch_browser import launch_browser
 from core.auth.login_email import ingresar_email
 from core.auth.login_password import ingresar_password
 from core.chatgpt.send_prompt import enviar_prompt
 from core.chatgpt.extract_response import obtener_respuesta
-
 from utils.waits import esperar_segundos
 
 
@@ -14,8 +18,8 @@ def main():
     driver = launch_browser()
 
     # 2. Navegar a ChatGPT login
-    driver.get("https://chat.openai.com/auth/login")
-    esperar_segundos(5)
+    driver.get("https://auth.openai.com/log-in")
+    esperar_segundos(20)
 
     # 3. Ingreso de credenciales
     email = "tu_email@example.com"
